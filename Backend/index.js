@@ -1,4 +1,5 @@
 import express from "express";
+import DataURIParser from "datauri/parser.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -8,6 +9,7 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import path from "path";
+
 
 dotenv.config({});
 const app = express();
@@ -36,15 +38,14 @@ app.use("/api/application", applicationRoute);
 
 // ---- code for deployment ----
 if (process.env.NODE_ENV === "production") {
-
   const dirpath = path.resolve();
-  app.use(express.static(path.join(dirpath, "./Frontend/dist")));
-  
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(dirpath, "./Frontend/dist/index.html"));
-  });
+  app.use(express.static("./frontend/dist"));
 
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(dirpath, "./frontend/dist", "index.html"));
+  });
 }
+
 
 app.listen(PORT, () => {
   connectDB();
