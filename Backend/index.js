@@ -9,6 +9,7 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import path from "path";
+import { fileURLToPath } from "url";
 
 
 dotenv.config({});
@@ -37,12 +38,18 @@ app.use("/api/job", jobRoute);
 app.use("/api/application", applicationRoute);
 
 // ---- code for deployment ----
-if (process.env.NODE_ENV === "production") {
-  const dirpath = path.resolve();
-  app.use(express.static("./frontend/dist"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+if (process.env.NODE_ENV === "production") {
+  const frontendBuildPath = path.join(__dirname, "frontend", "dist");
+
+  // Serve static frontend files
+  app.use(express.static(frontendBuildPath));
+
+  // SPA routing: all unknown routes send index.html
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(dirpath, "./frontend/dist", "index.html"));
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
   });
 }
 
