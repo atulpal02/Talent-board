@@ -42,7 +42,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
-  const frontendBuildPath = path.join(__dirname, "Frontend", "dist");
+  const frontendBuildPath = path.join(__dirname, "frontend", "dist");
 
   // Serve static frontend files
   app.use(express.static(frontendBuildPath));
