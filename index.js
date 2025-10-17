@@ -41,9 +41,9 @@ app.use("/api/application", applicationRoute);
 
 if(process.env.NODE_ENV === "production"){
   const dirpath = path.resolve();
-  app.use(express.static(( './Frontend/dist')));
+  app.use(express.static(( './frontend/dist')));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(dirpath, "./Frontend/dist/index.html"));
+    res.sendFile(path.resolve(dirpath, "./frontend/dist/index.html"));
   });
 }
 // const __filename = fileURLToPath(import.meta.url);
