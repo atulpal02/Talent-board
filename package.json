@@ -8,10 +8,7 @@
     "dev": "nodemon index.js",
     "start": "nodemon index.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "homepage": "https://atulpal02.github.io/Job-portal-project",
-
-    "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
+  
 
   },
   "author": "",
