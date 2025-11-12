@@ -7,8 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "start": "nodemon index.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "homepage": "https://atulpal02.github.io/Job-portal-project",
 
+    "predeploy": "npm run build",
+     "deploy": "gh-pages -d build"
 
   },
   "author": "",
@@ -22,6 +25,7 @@
     "datauri": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "gh-pages": "^6.3.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.4",
